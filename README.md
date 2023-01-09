@@ -8,5 +8,5 @@ docker-compose -f nginx-proxy.yaml up -d
 
 ## code server
 ```shell
-docker-compose -f nginx-proxy.yaml up -d
+docker-compose -f code-server.yaml up -d
 ```
