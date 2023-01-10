@@ -1,0 +1,25 @@
+version: "3"
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PASSWORD=1234567890
+      - PROXY_DOMAIN=127.0.0.1
+      - DEFAULT_WORKSPACE=/config/workspace
+      # nginx-proxy
+      - VIRTUAL_HOST=code-server.my.domain
+      - VIRTUAL_PORT=8443
+      - LETSENCRYPT_HOST=code-server.my.domain
+      - LETSENCRYPT_EMAIL=example@gmail.com
+    volumes:
+      - /path/to/appdata/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    expose:
+      - "8443"
+    network_mode: bridge
